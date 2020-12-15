@@ -14,7 +14,7 @@ namespace RoomBooking.Core.Entities
 
         public ICollection<Booking> Bookings { get; set; }
 
-        public string Name => $"{LastName} {FirstName}";
+        public string FullName => $"{LastName} {FirstName}";
         public Customer()
         {
             Bookings = new List<Booking>();

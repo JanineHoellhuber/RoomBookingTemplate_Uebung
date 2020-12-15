@@ -1,5 +1,6 @@
 ﻿using RoomBooking.Core.Contracts;
 using RoomBooking.Core.Entities;
+using RoomBooking.Core.Validations;
 using RoomBooking.Persistence;
 using RoomBooking.Wpf.Common;
 using RoomBooking.Wpf.Common.Contracts;
@@ -37,6 +38,8 @@ namespace RoomBooking.Wpf.ViewModels
                 OnPropertyChanged(nameof(Firstname));
             }
         }
+        [Required(ErrorMessage ="Lastname is required")]
+        [MinLength(2, ErrorMessage ="Minimum length of Lastname is 2")]
         public string Lastname
         {
             get => _lastname;
@@ -71,7 +74,27 @@ namespace RoomBooking.Wpf.ViewModels
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(Lastname))
+            {
+                yield return new ValidationResult(
+                    "Lastname is required",
+                    new string[] { nameof(Lastname) });
+
+            }
+            else if (Lastname.Length < 2)
+            {
+                yield return new ValidationResult(
+                  "Minimum length of Lastname is 2",
+                  new string[] { nameof(Lastname) });
+
+            }
+            else if (!IbanChecker.CheckIban(Iban))
+            {
+                yield return new ValidationResult(
+                 "Iban must be valid",
+                 new string[] { nameof(Lastname) });
+
+            }
         }
 
         private ICommand _cmdSave;

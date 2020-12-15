@@ -23,11 +23,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="From" Binding="{Binding Path=From, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="To" Binding="{Binding Path=To, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Header="Customer" Binding="{Binding Path=Customer.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Customer" Binding="{Binding Path=Customer.FullName, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="3" Command="{Binding CmdEditCustomer}" Content="{Binding Path=SelectedBooking.Customer.Name}"/>
-        
+        <Button Grid.Row="3" Command="{Binding CmdEditCustomer}" Content="{Binding Path=SelectedBooking.Customer.FullName}"/>
     </Grid>
 </controls:MetroWindow>
 
