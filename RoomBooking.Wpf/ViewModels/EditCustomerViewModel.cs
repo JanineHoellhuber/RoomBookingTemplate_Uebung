@@ -47,6 +47,7 @@ namespace RoomBooking.Wpf.ViewModels
             {
                 _lastname = value;
                 OnPropertyChanged(nameof(Lastname));
+                Validate();
             }
         }
 
@@ -57,6 +58,7 @@ namespace RoomBooking.Wpf.ViewModels
             {
                 _iban = value;
                 OnPropertyChanged(nameof(Iban));
+                Validate();
             }
         }
         public EditCustomerViewModel(IWindowController controller, Customer customer) : base(controller)
