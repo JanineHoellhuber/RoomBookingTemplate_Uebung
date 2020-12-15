@@ -16,22 +16,26 @@ namespace RoomBooking.Persistence
             _dbContext = dbContext;
         }
 
+      
         public async Task<IEnumerable<Booking>> GetAllAsync()
         {
             return await _dbContext.Bookings
-                .ToArrayAsync();
-        }
-
-        public async Task<IEnumerable<Booking>> GetByRoomsAsync(int roomId)
-        {
-            return await _dbContext.Bookings.Where(b => b.Room.Id == roomId)
-                .ToArrayAsync();
+                .ToListAsync();
         }
 
         public async Task AddRangeAsync(IEnumerable<Booking> bookings)
         {
-             await _dbContext.Bookings.AddRangeAsync(bookings);
+            await _dbContext.Bookings.AddRangeAsync(bookings);
         }
+
+
+        public async Task<IEnumerable<Booking>> GetByRoomsAsync(int roomId)
+        {
+            return await _dbContext.Bookings.Where(b => b.Room.Id == roomId)
+                .ToListAsync();
+        }
+
+        
 
 
     }

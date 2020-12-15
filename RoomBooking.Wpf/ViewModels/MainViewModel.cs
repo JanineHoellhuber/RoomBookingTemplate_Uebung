@@ -59,7 +59,7 @@ namespace RoomBooking.Wpf.ViewModels
             set
             {
                 _selectedBooking = value;
-                OnPropertyChanged(nameof(Booking));
+                OnPropertyChanged(nameof(SelectedBooking));
 
             }
         }
@@ -78,7 +78,7 @@ namespace RoomBooking.Wpf.ViewModels
 
         private async Task LoadBookingsAsync()
         {
-            _selectedBookingNow = _selectedBooking;
+            _selectedBookingNow = SelectedBooking;
             using IUnitOfWork uow = new UnitOfWork();
             var bookings = await uow.Bookings.GetByRoomsAsync(SelectedRoom.Id);
             Bookings = new ObservableCollection<Booking>(bookings);

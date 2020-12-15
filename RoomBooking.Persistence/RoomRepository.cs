@@ -18,7 +18,7 @@ namespace RoomBooking.Persistence
         public async Task<IEnumerable<Room>> GetAllAsync()
         {
             return await _dbContext.Rooms
-                .ToArrayAsync();
+                .ToListAsync();
         }
 
 
